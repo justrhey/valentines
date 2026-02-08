@@ -1,0 +1,448 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #a3bded 0%, #6991c7 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+/* Main Container */
+.wide-book-container {
+  width: 98%;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.wide-book {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  height: 88vh;
+  min-height: 550px;
+  max-height: 700px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.book-header {
+  background: linear-gradient(135deg, #6991c7 0%, #a3bded 100%);
+  color: white;
+  padding: 25px 35px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.book-header h1 {
+  font-size: 2rem;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+/* Progress Indicator */
+.progress-container {
+  background: #f0f5ff;
+  padding: 18px 35px;
+  border-bottom: 2px solid #e0e8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.progress-step {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: white;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 2px solid #e0e0e0;
+  position: relative;
+  z-index: 2;
+}
+
+.progress-step.completed {
+  background: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
+}
+
+.progress-step.active {
+  background: #6991c7;
+  border-color: #6991c7;
+  color: white;
+}
+
+.progress-line {
+  position: absolute;
+  top: 50%;
+  left: 65px;
+  right: 65px;
+  height: 3px;
+  background: linear-gradient(90deg, #4CAF50 0%, #4CAF50 33%, #6991c7 33%, #6991c7 66%, #e0e0e0 66%);
+  z-index: 1;
+}
+
+/* Main Content Area */
+.content-area {
+  padding: 20px 35px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+/* Summary Info */
+.summary-info {
+  background: linear-gradient(135deg, #f0f5ff 0%, #e8efff 100%);
+  border: 2px solid #d1ddff;
+  border-radius: 10px;
+  padding: 15px 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.summary-info h3 {
+  color: #6991c7;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.summary-details {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.detail-item {
+  text-align: center;
+}
+
+.detail-label {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 3px;
+}
+
+.detail-value {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Section Headers */
+.section-header {
+  text-align: center;
+  margin-top: 10px;
+  flex-shrink: 0;
+}
+
+.section-header h2 {
+  color: #6991c7;
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.section-header p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Color Grids */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.color-option {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 3px solid transparent;
+  overflow: hidden;
+}
+
+.color-option:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.color-option.selected {
+  border-color: #333;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.color-option.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: white;
+  color: #333;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.color-display {
+  width: 100%;
+  height: 70%;
+  border-radius: 8px 8px 0 0;
+}
+
+.color-name {
+  width: 100%;
+  height: 30%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #333;
+  border-radius: 0 0 8px 8px;
+  padding: 5px;
+  text-align: center;
+}
+
+/* Preview Section */
+.preview-section {
+  background: #f8faff;
+  border: 2px solid #e0e8ff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 10px;
+  flex-shrink: 0;
+}
+
+.preview-section h3 {
+  text-align: center;
+  color: #6991c7;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.outfit-preview {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+}
+
+.person {
+  text-align: center;
+  flex: 1;
+  max-width: 200px;
+}
+
+.person-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  padding: 8px;
+  background: white;
+  border-radius: 20px;
+  border: 2px solid #e0e8ff;
+}
+
+.outfit-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.shirt-preview, .pants-preview {
+  width: 120px;
+  height: 100px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+  font-size: 0.9rem;
+  overflow: hidden;
+}
+
+.shirt-preview {
+  border: 2px solid #e0e0e0;
+}
+
+.shirt-preview::before {
+  content: 'T-SHIRT';
+}
+
+.pants-preview {
+  border: 2px solid #e0e0e0;
+}
+
+.pants-preview::before {
+  content: 'PANTS';
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 20px;
+  border-top: 2px solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.back-btn, .next-btn {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.back-btn {
+  background: #f8f9fa;
+  color: #666;
+  border: 1px solid #e9ecef;
+}
+
+.back-btn:hover {
+  background: #e9ecef;
+}
+
+.next-btn {
+  background: linear-gradient(135deg, #6991c7 0%, #a3bded 100%);
+  color: white;
+  min-width: 180px;
+}
+
+.next-btn:hover {
+  background: linear-gradient(135deg, #5a82b8 0%, #92b0e0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(105, 145, 199, 0.3);
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .wide-book {
+    height: auto;
+    max-height: 90vh;
+    min-height: 500px;
+  }
+  
+  .book-header {
+    padding: 20px 25px;
+  }
+  
+  .book-header h1 {
+    font-size: 1.7rem;
+  }
+  
+  .content-area {
+    padding: 15px 25px;
+    gap: 15px;
+  }
+  
+  .color-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  .progress-container {
+    padding: 15px 25px;
+    gap: 30px;
+  }
+  
+  .progress-step {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .progress-line {
+    left: 50px;
+    right: 50px;
+  }
+  
+  .outfit-preview {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .person {
+    max-width: 150px;
+  }
+  
+  .shirt-preview, .pants-preview {
+    width: 100px;
+    height: 80px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .back-btn, .next-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .summary-details {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

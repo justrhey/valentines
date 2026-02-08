@@ -1,0 +1,191 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #b203e8, #9000f0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.card {
+  background: #ffffff;
+  padding: 50px 40px;
+  border-radius: 24px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.8s ease;
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(5px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.1) rotate(360deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+h1 {
+  color: #ff4d6d;
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+p {
+  color: #555;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+.buttons {
+  position: relative;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  min-width: 120px;
+}
+
+.yes {
+  background: #ff4d6d;
+  color: #ffffff;
+  position: relative;
+  z-index: 20;
+  box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+  order: 1; /* Yes on left */
+}
+
+.yes:hover {
+  background: #ff2f5d;
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 12px 25px rgba(255, 47, 93, 0.5);
+}
+
+.no {
+  background: #eaeaea;
+  color: #555;
+  position: relative; /* Changed from absolute to relative */
+  z-index: 20;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  order: 2; /* No on right */
+}
+
+.no:hover {
+  background: #d0d0d0;
+}.buttons {
+  position: relative;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+button {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  min-width: 120px;
+}
+
+.yes {
+  background: #ff4d6d;
+  color: #ffffff;
+  position: relative;
+  z-index: 20;
+  box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+  order: 1; /* Yes on left */
+}
+
+.yes:hover {
+  background: #ff2f5d;
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 12px 25px rgba(255, 47, 93, 0.5);
+}
+
+.no {
+  background: #eaeaea;
+  color: #555;
+  position: relative; /* Changed from absolute to relative */
+  z-index: 20;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  order: 2; /* No on right */
+}
+
+.no:hover {
+  background: #d0d0d0;
+}
+
+.valentine-image {
+  animation: popIn 0.6s ease forwards, float 3s ease-in-out infinite !important;
+  pointer-events: auto !important;
+}

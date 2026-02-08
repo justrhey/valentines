@@ -1,0 +1,389 @@
+/* Date selection styles */
+.date-selection-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  padding: 20px;
+}
+
+.date-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 24px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.8s ease;
+}
+
+.date-card h1 {
+  color: #ff4d6d;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.date-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.date-option {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.date-option:hover {
+  background: #fff5f7;
+  border-color: #ff4d6d;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 77, 109, 0.2);
+}
+
+.option-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.option-content h3 {
+  color: #333;
+  margin: 0 0 5px 0;
+  font-size: 20px;
+}
+
+.option-content p {
+  color: #666;
+  margin: 0;
+  font-size: 14px;
+}
+
+.click-counter {
+  background: #fff5f7;
+  padding: 12px 20px;
+  border-radius: 12px;
+  color: #ff4d6d;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+/* Calendar styles */
+.calendar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.calendar-popup {
+  background: white;
+  border-radius: 24px;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.calendar-header {
+  text-align: center;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.calendar-header h2 {
+  color: #ff4d6d;
+  margin: 0 0 5px 0;
+}
+
+.calendar-header p {
+  color: #666;
+  margin: 0;
+}
+
+.close-calendar {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-month {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.month-header h3 {
+  margin: 0;
+  color: #333;
+}
+
+.nav-btn {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+  border-color: #ff4d6d;
+  color: #ff4d6d;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: #666;
+  font-size: 14px;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-day, .empty-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  font-weight: 500;
+}
+
+.calendar-day:hover:not(.past-day) {
+  background: #fff5f7;
+  border: 2px solid #ff4d6d;
+}
+
+.calendar-day.selected {
+  background: #ff4d6d;
+  color: white;
+}
+
+.calendar-day.past-day {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.calendar-day.valentines-day {
+  background: #ffe6eb;
+  color: #ff4d6d;
+  font-weight: bold;
+}
+
+.calendar-day .heart {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 12px;
+}
+
+.calendar-day .weekend-indicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  font-size: 10px;
+  color: #ff4d6d;
+}
+
+.calendar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.confirm-btn, .cancel-btn, .final-btn, .restart-btn {
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.confirm-btn {
+  background: #ff4d6d;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background: #ff2f5d;
+  transform: translateY(-2px);
+}
+
+.cancel-btn {
+  background: #f8f9fa;
+  color: #666;
+  border: 2px solid #e9ecef;
+}
+
+.cancel-btn:hover {
+  background: #e9ecef;
+}
+
+.success-popup {
+  text-align: center;
+  padding: 40px 30px;
+}
+
+.success-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  animation: bounce 1s ease infinite;
+}
+
+.success-message {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.success-note {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.final-btn {
+  background: #ff4d6d;
+  color: white;
+  width: 100%;
+}
+
+.final-btn:hover {
+  background: #ff2f5d;
+  transform: translateY(-2px);
+}
+
+/* Final message styles */
+.final-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  padding: 20px;
+}
+
+.final-message {
+  background: white;
+  padding: 50px 40px;
+  border-radius: 24px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.8s ease;
+}
+
+.final-message h1 {
+  color: #ff4d6d;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.heart-animation {
+  font-size: 80px;
+  margin: 20px 0;
+  animation: bounce 1s ease infinite;
+}
+
+.final-text {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.final-note {
+  font-size: 18px;
+  color: #ff4d6d;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.restart-btn {
+  background: #ff4d6d;
+  color: white;
+  width: 100%;
+  max-width: 200px;
+}
+
+.restart-btn:hover {
+  background: #ff2f5d;
+  transform: translateY(-2px);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-20px); }
+  60% { transform: translateY(-10px); }
+}

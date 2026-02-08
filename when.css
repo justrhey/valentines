@@ -1,0 +1,498 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+/* Main Container */
+.wide-book-container {
+  width: 98%;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.wide-book {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  height: 88vh;
+  min-height: 550px;
+  max-height: 700px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.book-header {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  padding: 25px 35px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.book-header h1 {
+  font-size: 2rem;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+/* Progress Indicator */
+.progress-container {
+  background: #f8f9ff;
+  padding: 18px 35px;
+  border-bottom: 2px solid #e6e9ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.progress-step {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: white;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 2px solid #e0e0e0;
+  position: relative;
+  z-index: 2;
+}
+
+.progress-step.completed {
+  background: #4CAF50;
+  border-color: #4CAF50;
+  color: white;
+}
+
+.progress-step.active {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: white;
+}
+
+.progress-line {
+  position: absolute;
+  top: 50%;
+  left: 75px;
+  right: 75px;
+  height: 3px;
+  background: linear-gradient(90deg, #4CAF50 0%, #4f46e5 50%, #e0e0e0 50%);
+  z-index: 1;
+}
+
+/* Main Content Area */
+.content-area {
+  padding: 20px 35px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+/* Location Display */
+.location-display {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f3ff 100%);
+  border: 2px solid #e0e7ff;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.location-display h3 {
+  font-size: 1.05rem;
+  color: #4f46e5;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.location-display p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* Calendar Section */
+.calendar-section {
+  background: #f8f9ff;
+  border: 2px solid #e0e7ff;
+  border-radius: 12px;
+  padding: 20px;
+  flex-shrink: 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  color: #4f46e5;
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.section-subtitle {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Weekdays */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+  padding: 0 5px;
+}
+
+.weekday {
+  text-align: center;
+  font-weight: 600;
+  color: #4f46e5;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 10px 0;
+}
+
+/* Calendar Grid */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  padding: 5px;
+}
+
+.date-button {
+  aspect-ratio: 1;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 45px;
+  padding: 5px;
+  position: relative;
+}
+
+.date-button:hover:not(.disabled):not(.selected) {
+  border-color: #818cf8;
+  background: #f8f9ff;
+}
+
+.date-button.selected {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  border-color: #4f46e5;
+  color: white;
+}
+
+.date-button.disabled {
+  background: #f5f5f5;
+  color: #ccc;
+  cursor: not-allowed;
+  border-color: #e8e8e8;
+}
+
+.date-button.past {
+  background: #f8f8f8;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.date-button.valentines {
+  background: linear-gradient(135deg, #ff4d6d 0%, #ff758c 100%);
+  border-color: #ff4d6d;
+  color: white;
+}
+
+.date-button.valentines::after {
+  content: '❤️';
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  font-size: 0.7rem;
+}
+
+.date-day {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.date-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* Time Selection Section */
+.time-section {
+  background: #f8f9ff;
+  border: 2px solid #e0e7ff;
+  border-radius: 12px;
+  padding: 20px;
+  flex-shrink: 0;
+}
+
+.time-slots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.time-slot {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 12px 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.time-slot:hover:not(.disabled):not(.selected) {
+  border-color: #818cf8;
+  background: #f8f9ff;
+  transform: translateY(-2px);
+}
+
+.time-slot.selected {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  border-color: #4f46e5;
+  color: white;
+  transform: scale(1.05);
+}
+
+.time-slot.disabled {
+  background: #f5f5f5;
+  color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.time-display {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.time-label {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Selection Summary */
+.selection-summary {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f3ff 100%);
+  border: 2px solid #e0e7ff;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.no-selection {
+  color: #999;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.selection-details {
+  width: 100%;
+}
+
+.selection-details h3 {
+  color: #4f46e5;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.selection-date {
+  font-size: 1.3rem;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.selection-time {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 600;
+}
+
+.selection-location {
+  color: #666;
+  font-size: 0.9rem;
+  padding-top: 10px;
+  border-top: 1px solid #e0e7ff;
+  margin-top: 10px;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 20px;
+  border-top: 2px solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.back-btn, .next-btn {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.back-btn {
+  background: #f8f9fa;
+  color: #666;
+  border: 1px solid #e9ecef;
+}
+
+.back-btn:hover {
+  background: #e9ecef;
+}
+
+.next-btn {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  min-width: 180px;
+}
+
+.next-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+}
+
+.next-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .wide-book {
+    height: auto;
+    max-height: 90vh;
+    min-height: 500px;
+  }
+  
+  .book-header {
+    padding: 20px 25px;
+  }
+  
+  .book-header h1 {
+    font-size: 1.7rem;
+  }
+  
+  .content-area {
+    padding: 15px 25px;
+    gap: 15px;
+  }
+  
+  .calendar-grid {
+    gap: 4px;
+  }
+  
+  .date-button {
+    min-height: 40px;
+    padding: 4px;
+  }
+  
+  .date-day {
+    font-size: 1rem;
+  }
+  
+  .date-label {
+    font-size: 0.65rem;
+  }
+  
+  .time-slots {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  
+  .time-slot {
+    padding: 10px 6px;
+  }
+  
+  .progress-container {
+    padding: 15px 25px;
+    gap: 40px;
+  }
+  
+  .progress-step {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .progress-line {
+    left: 60px;
+    right: 60px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .back-btn, .next-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
